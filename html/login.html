@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      /* box-sizing: border-box; */
+    }
+    .funhub-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(
+        135deg,
+        #0b1020 0%,
+        #141b2d 45%,
+        #1f2937 100%
+      );
+      font-family: Arial, sans-serif;
+      padding: 24px;
+    }
+    .funhub-card {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(17, 24, 39, 0.96);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(194, 197, 16, 0.45);
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+    .funhub-header {
+      background: linear-gradient(90deg, #111827, #1e293b);
+      padding: 28px 24px;
+      text-align: center;
+      color: #f8fafc;
+      position: relative;
+    }
+    .funhub-badge {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: #f59e0b;
+      color: #111827;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .funhub-body {
+      padding: 26px 24px 30px;
+      background: #111827;
+    }
+    .funhub-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      outline: none;
+      box-sizing: border-box;
+      background: #1f2937;
+      color: #f8fafc;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+    .funhub-input:focus {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+      transform: translateY(-1px);
+    }
+    .funhub-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #f59e0b, #d97706);
+      color: #111827;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+    }
+    .funhub-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 28px rgba(245, 158, 11, 0.35);
+      filter: brightness(1.06);
+    }
+    .funhub-btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 8px 16px rgba(245, 158, 11, 0.22);
+    }
+    .funhub-title {
+      margin: 0;
+      font-size: 40px;
+      letter-spacing: 1px;
+      color: #f8fafc;
+    }
+    .funhub-text {
+      margin: 10px 0 0;
+      color: #cbd5e1;
+      font-size: 15px;
+    }
+    .funhub-label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #e5e7eb;
+    }
+    .funhub-note {
+      text-align: center;
+      margin: 18px 0 0;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+    .eye-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: #374151;
+      color: #f8fafc;
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    #ref {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 14px;
+      padding-bottom: 10px;
+    }
+    #ref a {
+      color: #f59e0b;
+      text-decoration: none;
+    }
+    #ref a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <div class="funhub-wrap">
+      <div class="funhub-card">
+        <div class="funhub-header">
+          <div class="funhub-badge">FUNHUB</div>
+          <h1 class="funhub-title">Login</h1>
+          <p class="funhub-text">
+            Login to your account and start streaming fun
+          </p>
+        </div>
+        <div class="funhub-body">
+          <div style="display: grid; gap: 14px">
+            <div>
+              <label class="funhub-label">Username</label
+              ><input
+                class="funhub-input"
+                type="text"
+                placeholder="Enter username"
+                id="username"
+              />
+            </div>
+            <div>
+              <label class="funhub-label">Password</label>
+
+              <input
+                id="password"
+                class="funhub-input"
+                type="password"
+                placeholder="Enter password"
+                style="padding-right: 72px"
+              />
+            </div>
+            <button class="funhub-btn" onclick="login()">Login</button>
+          </div>
+          <p class="funhub-note">Watch. Enjoy. Repeat.</p>
+        </div>
+        <div id="ref">
+          <a href="signup.html">Don't have an account? Sign up here.</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  function getAccounts() {
+    try {
+      return JSON.parse(localStorage.getItem("userData") || "[]");
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function login() {
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value;
+    let accounts = getAccounts();
+    let found = accounts.find(function (account) {
+      return account.username === username;
+    });
+    if (!found) {
+      alert("Account not found. Please sign up first.");
+      return;
+    }
+    if (found.password !== password) {
+      alert("Incorrect password. Please try again.");
+      return;
+    }
+    alert("Login successful. Welcome back to FUNHUB.");
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+
+    console.log(found);
+    setTimeout(function () {
+      window.location.href = "/html/Site.html";
+    }, 1200);
+  }
+</script>

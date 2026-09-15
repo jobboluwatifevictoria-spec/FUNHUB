@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FUNHUB - Hero Video</title>
+    <style>
+      /* Reset and Base Styles */
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff;
+        background-color: #0b1020;
+        overflow-x: hidden;
+      }
+
+      /* Navbars */
+      /* #nav1 {
+        width: 100%;
+        height: 7vh;
+        background-color: #162b5f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .nav-brand {
+        font-weight: bold;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: #f59e0b;
+      }
+
+      .nav-links .signup-nav-btn {
+        background-color: #f59e0b;
+        color: #0b1020;
+        padding: 0.4rem 1rem;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+      }
+
+      .nav-links .signup-nav-btn:hover {
+        background-color: #d97706;
+        color: #ffffff;
+      }
+
+      #nav2 {
+        width: 100%;
+        height: 5vh;
+        background-color: #f59e0b;
+      } */
+
+      /* Hero Container */
+      .hero-container {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Adjusts to fit under the 12vh total navbars */
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Video Background Wrapper */
+      .video-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .video-wrapper iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100vw;
+        height: 56.25vw; /* 16:9 Aspect Ratio */
+        min-height: 100%;
+        min-width: 177.77vh; /* Keeps video filling the container */
+        transform: translate(-50%, -50%);
+      }
+
+      /* Dark Overlay */
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 16, 32, 0.7) 0%,
+          rgba(11, 16, 32, 0.85) 100%
+        );
+        z-index: 2;
+      }
+
+      /* Hero Content (Logo, Text, Button) */
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+        padding: 0 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      /* FUNHUB Logo */
+
+        .funhub-logo {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #f59e0b;
+    text-transform: uppercase;
+    padding-left: 100px;
+    text-shadow:
+      3px 3px 0 #0f172a,
+      6px 6px 0 rgba(0, 0, 0, 0.35),
+      0 0 18px rgba(245, 158, 11, 0.25);
+    -webkit-text-stroke: 2px #1e293b;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.35));
+    transform: perspective(700px) rotateX(8deg);
+  }
+      
+      .logo {
+    display: inline-block;
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #f59e0b;
+    text-transform: uppercase;
+    text-shadow:
+      3px 3px 0 #0f172a,
+      6px 6px 0 rgba(0, 0, 0, 0.35),
+      0 0 18px rgba(245, 158, 11, 0.25);
+    -webkit-text-stroke: 2px #1e293b;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.35));
+    transform: perspective(700px) rotateX(8deg);
+  }
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        color: #cbd5e1;
+        max-width: 600px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Call To Action Button */
+      .buttons{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      .hero-btn {
+        margin-top: 1rem;
+        padding: 0.8rem 2.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #f59e0b;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      }
+
+      .hero-btn:hover {
+        background-color: #d97706;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+      }
+
+      .hero-btn:active {
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- <nav id="nav1">
+        <div class="funhub-logo">FUNHUB</div>
+        <div class="nav-links">
+          <a href="login.html">Login</a>
+          <a href="index.html" class="signup-nav-btn">Sign Up</a>
+        </div>
+      </nav>
+      <nav id="nav2"></nav> -->
+
+      <section class="hero-container">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/oolJWcOhHCw?autoplay=1&mute=1&loop=1&playlist=oolJWcOhHCw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+            frameborder="0"
+            allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+          >
+          </iframe>
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+          <div class="logo">FUNHUB</div>
+          <h1 class="hero-title">Experience the Ultimate Hub of Fun</h1>
+          <p class="hero-subtitle">
+            Dive into endless entertainment, interactive gaming, and vibrant spaces built just for you.
+          </p>
+           <p class="hero-subtitle">
+            let's get the fun started😏😀 !!! <br><br>Already have an account? Then Go Have Fun Now😊!! <br><br>Don't have an account?Sign up first😉!!
+          </p>
+          <div class="buttons">
+          <a href="login.html" class="hero-btn">Go Have Fun Now</a>
+          <a href="signup.html" class="hero-btn">Sign up first</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
